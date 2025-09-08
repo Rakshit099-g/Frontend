@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, User } from "lucide-react"; // Imported User icon
 
 const Login = () => {
   const navigate = useNavigate();
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isLogin, setIsLogin] = useState(true); // controls Login vs Signup
 
   const handleLogin = () => {
     setIsLoggingIn(true);
     // Simulate a delay for the animation before navigation
     navigate("/content");
+  };
+
+  const handleSignupClick = () => {
+    setIsLogin(false);
+  };
+
+  const handleLoginClick = () => {
+    setIsLogin(true);
   };
 
   return (
@@ -35,12 +44,26 @@ const Login = () => {
               <span className="font-bold">L</span>
             </div>
             <h1 className="text-2xl font-bold">
-              We are <span className="text-white">Login</span>
+              We are <span className="text-white">{isLogin ? "Login" : "Sign Up"}</span>
             </h1>
           </div>
           <p className="text-gray-300 mb-8">
-            Welcome back! Log in to your account.
+            {isLogin ? "Welcome back! Log in to your account." : "Create your account now!"}
           </p>
+
+          {/* Username Input - only for Sign Up */}
+          {!isLogin && (
+            <div className="mb-4 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <User className="w-5 h-5 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                placeholder="Username"
+                className="w-full bg-gray-700 text-white rounded-lg pl-10 p-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+          )}
 
           {/* Email Input */}
           <div className="mb-4 relative">
@@ -66,13 +89,38 @@ const Login = () => {
             />
           </div>
 
-          {/* Login Button */}
+          {/* Submit Button */}
           <button
             onClick={handleLogin}
             className="w-full bg-purple-600 hover:bg-purple-500 text-white py-3 rounded-lg font-semibold transition duration-300"
           >
-            Log in
+            {isLogin ? "Log in" : "Sign Up"}
           </button>
+
+          {/* Toggle Link */}
+          <p className="mt-4 text-center text-gray-400">
+            {isLogin ? (
+              <>
+                New User?{" "}
+                <button
+                  onClick={handleSignupClick}
+                  className="text-purple-500 hover:underline"
+                >
+                  Sign Up
+                </button>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <button
+                  onClick={handleLoginClick}
+                  className="text-purple-500 hover:underline"
+                >
+                  Login
+                </button>
+              </>
+            )}
+          </p>
         </div>
       </div>
     </div>

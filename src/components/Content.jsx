@@ -169,7 +169,7 @@ const Content = ({ userId = "user123" }) => {
               <Search className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">SearchHub</h1>
+              <h1 className="text-xl font-bold text-white">AI Research Agent</h1>
               <p className="text-white/80 text-sm">Knowledge at your fingertips</p>
             </div>
           </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, ArrowUp, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import { TypingAnimation } from '../TypingAnimation';
+import { InteractiveHoverButton } from '../InteractiveHoverButton';
 const NFTShowcase = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -61,7 +62,7 @@ const NFTShowcase = () => {
     <div>
     <div className="min-h-screen bg-gray-900 relative">
       {/* Navbar */}
-      <nav className="relative z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+      <nav className="relative z-50  bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo/Brand */}
@@ -83,7 +84,7 @@ const NFTShowcase = () => {
                 onClick={handleButtonClick}
                 className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                Sign Up
+                Sign In
               </button>
             </div>
 
@@ -137,7 +138,9 @@ const NFTShowcase = () => {
       <div className="flex items-center justify-center p-4 relative min-h-[calc(100vh-64px)]">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-500 to-red-500"></div>
+        
+          <div className="absolute inset-0 bg-black"></div>
+
         </div>
         
         <div className="max-w-6xl w-full flex items-center justify-between gap-12 relative z-10">
@@ -188,8 +191,8 @@ const NFTShowcase = () => {
           {/* Content Section */}
           <div className="flex-1 text-white max-w-lg">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight transition-all duration-500">
-                {currentNFT.title}
+              <h1 className="text-6xl md:text-7xl font-bold leading-tight transition-all duration-500">
+                <TypingAnimation>{currentNFT.title}</TypingAnimation>
               </h1>
               
               <p className="text-gray-300 text-lg leading-relaxed transition-all duration-500">
@@ -200,65 +203,68 @@ const NFTShowcase = () => {
                 {currentNFT.traits}
               </p>
               
-              <button 
-                onClick={handleButtonClick} 
-                className="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Sign In
-              </button>
+              <InteractiveHoverButton  onClick={handleButtonClick}  
+                className="bg-white text-black hover:shadow-md"
+              >Sign In</InteractiveHoverButton>
             </div>
           </div>
         </div>
 
         {/* Scroll to top button */}
-        <button className="fixed bottom-8 right-8 p-3 bg-gray-700 hover:bg-gray-800 rounded-full transition-all duration-300 transform hover:scale-110 z-20">
-          <ArrowUp className="w-5 h-5 text-white" />
-        </button>
+        
       </div>
     </div>
 
-    <footer className="bg-gray-700 text-gray-300 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* About */}
-            <div>
-              <h3 className="text-white font-bold text-lg mb-2">About Weirdos Club</h3>
-              <p className="text-sm">
-                Join the InsightHub, a community of curious minds and data enthusiasts. Explore cutting-edge research tools, uncover valuable information, and connect with fellow knowledge seekers.
-              </p>
-            </div>
+    <footer className="bg-gray-900 text-gray-400 border-t border-gray-800">
+  <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+      {/* About Section */}
+      <div>
+        <h3 className="text-white font-semibold mb-4">ABOUT US</h3>
+        <p>
+          Discover, explore, and stay updated with the latest research tools and trends. Join a community of passionate minds driving innovation.
+        </p>
+      </div>
 
-            {/* Links */}
-            <div>
-              <h3 className="text-white font-bold text-lg mb-2">Quick Links</h3>
-              <ul className="space-y-1">
-                <li><a href="#" className="hover:text-purple-400 transition-colors">Home</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition-colors">Collection</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition-colors">Roadmap</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition-colors">Team</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition-colors">FAQ</a></li>
-              </ul>
-            </div>
+      {/* Quick Links */}
+      <div>
+        <h3 className="text-white font-semibold mb-4">QUICK LINKS</h3>
+        <ul className="space-y-2">
+          <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Collection</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Roadmap</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Team</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+        </ul>
+      </div>
 
-            {/* Contact */}
-            <div>
-              <h3 className="text-white font-bold text-lg mb-2">Contact Us</h3>
-              <p className="text-sm">
-                Have questions? Reach out via our social channels or drop us an email.
-              </p>
-              <div className="flex space-x-4 mt-4">
-                <a href="#" className="hover:text-purple-400 transition-colors">Twitter</a>
-                <a href="#" className="hover:text-purple-400 transition-colors">Discord</a>
-                <a href="#" className="hover:text-purple-400 transition-colors">Instagram</a>
-              </div>
-            </div>
-          </div>
+      {/* Support */}
+      <div>
+        <h3 className="text-white font-semibold mb-4">SUPPORT</h3>
+        <ul className="space-y-2">
+          <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Terms of Use</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+        </ul>
+      </div>
 
-          <div className="mt-8 border-t border-gray-700 pt-4 text-center text-xs text-gray-400">
-            © 2025 Ai Research Agent. All rights reserved.
-          </div>
+      {/* Contact Us */}
+      <div>
+        <h3 className="text-white font-semibold mb-4">CONTACT</h3>
+        <div className="flex space-x-4">
+          <a href="#" className="hover:text-white transition-colors">Twitter</a>
+          <a href="#" className="hover:text-white transition-colors">Discord</a>
+          <a href="#" className="hover:text-white transition-colors">Instagram</a>
         </div>
-      </footer>
+      </div>
+    </div>
+
+    <div className="mt-10 border-t border-gray-800 pt-6 text-center text-xs">
+      © 2025 AI Research Agent. All rights reserved.
+    </div>
+  </div>
+</footer>
+
       </div>
 
   );
